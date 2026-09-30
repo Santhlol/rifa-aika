@@ -99,7 +99,7 @@ function MarcaX() {
     <svg
       viewBox="0 0 40 40"
       aria-hidden
-      className="pointer-events-none absolute inset-[12%] text-rosa"
+      className="pointer-events-none absolute inset-0 m-auto size-[76%] text-rosa"
     >
       <path
         d="M7 8 C 16 17, 24 25, 33 33 M33 7 C 24 16, 16 24, 7 33"
