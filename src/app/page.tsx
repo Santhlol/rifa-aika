@@ -1,5 +1,6 @@
 import Image from "next/image";
 import { Corazon } from "@/components/Corazon";
+import { DatosPago } from "@/components/DatosPago";
 import { Tablero } from "@/components/Tablero";
 import { obtenerNumerosPublicos } from "@/lib/numeros";
 import { RIFA, formatoPesos } from "@/lib/rifa";
@@ -99,6 +100,8 @@ export default async function Home() {
               <dd>Del 00 al 99</dd>
             </div>
           </dl>
+
+          <DatosPago />
 
         </aside>
 

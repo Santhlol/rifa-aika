@@ -7,7 +7,14 @@ export const RIFA = {
   ],
   loteria: "Lotería del Sinuano",
   fechaSorteo: "20 de octubre",
+  pago: {
+    numero: "3013728127",
+    medios: ["Nequi", "Llave Bre-B"],
+  },
 } as const;
+
+// 3013728127 → "301 372 8127"
+export const formatoCelular = (n: string) => n.replace(/(\d{3})(\d{3})(\d{4})/, "$1 $2 $3");
 
 export type NumeroPublico = { numero: number; tomado: boolean };
 
