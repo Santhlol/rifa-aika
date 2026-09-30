@@ -1,0 +1,49 @@
+@import "tailwindcss";
+
+/* Paleta tomada del flyer */
+@theme {
+  --color-crema: #f7ebe6;
+  --color-crema-claro: #fcf5f1;
+  --color-rosa: #d88c8c;
+  --color-rosa-claro: #f4d3cf;
+  --color-rosa-suave: #f9e4e0;
+  --color-cafe: #3d1f1c;
+  --color-cafe-suave: #6b4440;
+
+  --font-marker: var(--font-marker), cursive;
+  --font-amatic: var(--font-amatic), cursive;
+  --font-caveat: var(--font-caveat), cursive;
+  --font-sans: var(--font-quicksand), system-ui, sans-serif;
+}
+
+body {
+  background: var(--color-crema);
+  color: var(--color-cafe);
+  font-family: var(--font-sans);
+}
+
+/* Trazo tipo pincel detrás de los títulos de sección */
+.pincel {
+  background:
+    linear-gradient(
+      100deg,
+      transparent 0.5%,
+      var(--color-rosa-claro) 2%,
+      var(--color-rosa-claro) 97%,
+      transparent 99.5%
+    );
+  border-radius: 0.4rem 1.2rem 0.5rem 1rem;
+}
+
+/* Cinta adhesiva de las fotos */
+.cinta::before {
+  content: "";
+  position: absolute;
+  top: -0.6rem;
+  left: 50%;
+  width: 4.5rem;
+  height: 1.3rem;
+  transform: translateX(-50%) rotate(-4deg);
+  background: color-mix(in srgb, var(--color-rosa) 55%, transparent);
+  border-radius: 2px;
+}
