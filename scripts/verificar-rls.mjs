@@ -49,3 +49,12 @@ console.log(
 
 const r6 = await sb.from("numeros").insert({ numero: 5 });
 console.log("6. Público inserta números:    ", r6.error ? bloqueado(r6.error) : "⚠️ PERMITIDO");
+
+const r7 = await sb.from("colaboraciones").select("*");
+console.log(
+  "7. Público lee colaboraciones: ",
+  r7.error ? bloqueado(r7.error) : r7.data.length ? `⚠️ EXPUESTAS ${r7.data.length}` : "0 filas ✓",
+);
+
+const r8 = await sb.from("colaboraciones").insert({ monto: 1000 });
+console.log("8. Público crea colaboración:  ", r8.error ? bloqueado(r8.error) : "⚠️ PERMITIDO");

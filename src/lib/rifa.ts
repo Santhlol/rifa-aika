@@ -23,7 +23,27 @@ export type NumeroAdmin = NumeroPublico & {
   telefono: string | null;
   pagado: boolean;
   observacion: string | null;
+  fechaPagoEsperada: string | null; // YYYY-MM-DD
 };
+
+export type Colaboracion = {
+  id: number;
+  nombre: string | null;
+  monto: number;
+  fecha: string; // YYYY-MM-DD
+  medio: string | null;
+  observacion: string | null;
+};
+
+export const MEDIOS_PAGO = ["Nequi", "Bre-B", "Efectivo", "Otro"] as const;
+
+// Fecha de hoy en Colombia como YYYY-MM-DD
+export const hoyColombia = () =>
+  new Date().toLocaleDateString("en-CA", { timeZone: "America/Bogota" });
+
+// "2026-10-05" → "5 oct"
+export const formatoFecha = (iso: string) =>
+  new Date(iso + "T12:00:00").toLocaleDateString("es-CO", { day: "numeric", month: "short" });
 
 export const formatoPesos = (valor: number) =>
   "$" + valor.toLocaleString("es-CO", { maximumFractionDigits: 0 });

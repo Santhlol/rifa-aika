@@ -1,6 +1,6 @@
 import { redirect } from "next/navigation";
-import { PanelAdmin } from "@/components/PanelAdmin";
-import { obtenerNumerosAdmin } from "@/lib/numeros";
+import { PanelAdmin } from "@/components/admin/PanelAdmin";
+import { obtenerColaboraciones, obtenerNumerosAdmin } from "@/lib/numeros";
 import { createClient } from "@/lib/supabase/server";
 import { cerrarSesion } from "./actions";
 
@@ -32,7 +32,10 @@ export default async function AdminPage() {
     );
   }
 
-  const numeros = await obtenerNumerosAdmin();
+  const [numeros, colaboraciones] = await Promise.all([
+    obtenerNumerosAdmin(),
+    obtenerColaboraciones(),
+  ]);
 
   return (
     <main className="mx-auto w-full max-w-6xl px-4 py-6 sm:px-6">
@@ -56,7 +59,7 @@ export default async function AdminPage() {
           </form>
         </div>
       </header>
-      <PanelAdmin numeros={numeros} />
+      <PanelAdmin numeros={numeros} colaboraciones={colaboraciones} />
     </main>
   );
 }

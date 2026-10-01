@@ -1,6 +1,6 @@
 import { connection } from "next/server";
 import { createClient } from "@/lib/supabase/server";
-import type { NumeroAdmin, NumeroPublico } from "@/lib/rifa";
+import type { Colaboracion, NumeroAdmin, NumeroPublico } from "@/lib/rifa";
 
 // Tablero vacío si Supabase aún no está configurado (útil en desarrollo).
 const vacio = (): NumeroPublico[] =>
@@ -34,7 +34,7 @@ export async function obtenerNumerosAdmin(): Promise<NumeroAdmin[]> {
   const { data, error } = await supabase
     .from("numeros")
     .select(
-      "numero, tomado, numeros_detalle (nombre, telefono, pagado, observacion)",
+      "numero, tomado, numeros_detalle (nombre, telefono, pagado, observacion, fecha_pago_esperada)",
     )
     .order("numero");
 
@@ -50,6 +50,19 @@ export async function obtenerNumerosAdmin(): Promise<NumeroAdmin[]> {
       telefono: d?.telefono ?? null,
       pagado: d?.pagado ?? false,
       observacion: d?.observacion ?? null,
+      fechaPagoEsperada: d?.fecha_pago_esperada ?? null,
     };
   });
+}
+
+export async function obtenerColaboraciones(): Promise<Colaboracion[]> {
+  const supabase = await createClient();
+  const { data, error } = await supabase
+    .from("colaboraciones")
+    .select("id, nombre, monto, fecha, medio, observacion")
+    .order("fecha", { ascending: false })
+    .order("id", { ascending: false });
+
+  if (error) throw new Error(error.message);
+  return data;
 }
